@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <!-- 1st approach -->
+            <!-- onclick can be applied here also but this is not a good approach when the project is on big scale -->
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    // //2nd approach for onclick event 
+    // //this is also not a good approach , this give less features 
+    // document.getElementById('owl').onclick = function(){
+    //     alert("owl clicked");
+    // }
+    // //3rd approach
+    // document.getElementById('owl').addEventListener('click', function(){
+    //     alert("owl clicked again")
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click', function(e){
+    //     console.log(e);
+    // }, false)
+    // // important events to study
+    // // type, timestamp, preventdefault, target, toElement, srcElement, currentTarget,
+    // // clientX, clientY, screenX, screenY, altKey, ctrlKey, shiftKey, keyCode
+
+    // // EVENT PROPAGATION 
+    // 1-> BUBBLEING (INSIDE TO OUTSIDE) , false is used in this
+    // 2-> CAPTURIING (OUTSIDE TO INSIDE), true is used in this.
+    //EXAMPLE
+    // document.getElementById('images').addEventListener('click', function(){
+    //     console.log('clicked inside ul');
+    // }, false)
+
+    // document.getElementById('owl').addEventListener('click', function(){
+    //     console.log('owl clicked');
+    // }, false)                                                             //owl clicked  //clicked inside ul (li then ul);
+
+    document.getElementById('images').addEventListener('click', function(){
+        console.log('clicked inside ul');
+    })
+
+    document.getElementById('owl').addEventListener('click', function(e){
+        console.log('owl clicked');
+        e.stopPropagation();
+    })                                                                   //clicked inside ul    //owl clicked   (out to inside)
+
+    // to stop event propagation we will stop it by using e.stopPropagation ,,, this works only for false
+
+    document.getElementById('google').addEventListener('click',function(e){
+        console.log("google clicked");
+        e.preventDefault()
+        e.stopPropagation()
+    },false)
+
+
+
+    
+
+</script>
+</html>
